@@ -1,0 +1,23 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: msa-weather-eureka-client-zuul
+zuul:
+  routes:
+    city:
+#    要拦截请求的路径
+      path: /city/**
+#      拦截请求的路径所要映射的服务
+      serviceId: msa-weather-city-server
+
+    date:
+      path: /data/**
+      serviceId: msa-weather-data-server
+logging:
+  path: /usr/local/jars/log/${spring.application.name}
+
+
+
